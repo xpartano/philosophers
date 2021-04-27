@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:13:00 by jballest          #+#    #+#             */
-/*   Updated: 2021/04/23 15:09:18 by jballest         ###   ########.fr       */
+/*   Updated: 2021/04/26 15:29:41 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <stdbool.h>
 # define MIN_PHILO 2
 # define MAX_PHILO 200
 # define MIN_TTDIE 60
@@ -39,6 +40,7 @@ typedef struct s_philo
 	struct s_scenario	*scenario;
 
 	pthread_mutex_t		m_eating;
+	pthread_mutex_t		m_alive;
 }t_philo;
 
 typedef struct s_scenario

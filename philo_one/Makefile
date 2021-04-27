@@ -6,7 +6,7 @@
 #    By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/23 04:56:30 by jballest          #+#    #+#              #
-#    Updated: 2021/04/23 15:10:50 by jballest         ###   ########.fr        #
+#    Updated: 2021/04/26 23:08:45 by jballest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): printinfo $(OBJS)
-				gcc ${CFLAGS} $(INCLUDES) ${LIBS} ${OBJS}  -o ${NAME}
+				gcc ${CFLAGS} $(INCLUDES) ${OBJS}  ${LIBS}  -o ${NAME}
 
 clean:
 				-@rm -rf $(OBJS) $(BONUS_OBJS)
