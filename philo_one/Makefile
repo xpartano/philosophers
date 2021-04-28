@@ -6,18 +6,24 @@
 #    By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/23 04:56:30 by jballest          #+#    #+#              #
-#    Updated: 2021/04/26 23:08:45 by jballest         ###   ########.fr        #
+#    Updated: 2021/04/28 15:10:05 by jballest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo_one
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 INCLUDES = -I .
 LIBS = -lpthread
 
-SRCS = main.c init.c utils.c errors.c
+SRCS =	main.c						\
+		init.c						\
+		utils.c						\
+		errors.c					\
+		threads.c					\
+		philosophers.c
+
 OBJS = $(SRCS:.c=.o)
 
 

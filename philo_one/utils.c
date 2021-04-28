@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 05:16:57 by jballest          #+#    #+#             */
-/*   Updated: 2021/04/23 05:17:17 by jballest         ###   ########.fr       */
+/*   Updated: 2021/04/29 01:01:56 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,26 @@ int	ft_atoi(char *str)
 	if ((ncnt % 2) != 0)
 		nb = nb * (-1);
 	return (nb);
+}
+
+unsigned long	ft_get_time(void)
+{
+	unsigned long			res;
+	static struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	res = time.tv_sec * 1000;
+	res += time.tv_usec / 1000;
+	return (res);
+}
+
+void	print_philo_message(t_philo *philo, char *message, int ret)
+{
+	long long	t;
+
+	t = ft_get_time() - philo->scenario->init_time;
+	pthread_mutex_lock(&philo->scenario->m_philo_print);
+	printf("%llu Philo %d %s \n", t, philo->id, message);
+	if (ret != 1)
+		pthread_mutex_unlock(&philo->scenario->m_philo_print);
 }

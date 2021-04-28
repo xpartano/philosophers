@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:13:00 by jballest          #+#    #+#             */
-/*   Updated: 2021/04/26 15:29:41 by jballest         ###   ########.fr       */
+/*   Updated: 2021/04/29 00:33:06 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,28 @@ typedef struct s_scenario
 
 //	Initializers
 
-int	init_pm(t_scenario *scen, int argc, char **argv);
+int				init_pm(t_scenario *scen, int argc, char **argv);
 
 //	Utils
 
-int	ft_atoi(char *str);
-int	ft_strlen(char *str);
+int				ft_atoi(char *str);
+int				ft_strlen(char *str);
+unsigned long	ft_get_time(void);
+void			print_philo_message(t_philo *philo, char *message, int ret);
+
 
 //	Errors
 
-int	check_arg_errors(int argc, char **argv);
-int	error_return(char *txt, int ret);
+int				check_arg_errors(int argc, char **argv);
+int				error_return(char *txt, int ret);
+
+//	Threads
+
+int				philo_threads(t_scenario *scen);
+
+//	Philosophers
+
+int				finish_philo_meals(int max, t_philo **philos);
+void			lifecycle(t_philo *philo);
 
 #endif
