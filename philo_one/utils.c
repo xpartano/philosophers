@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 05:16:57 by jballest          #+#    #+#             */
-/*   Updated: 2021/04/29 01:01:56 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/01 01:57:02 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,11 @@ void	print_philo_message(t_philo *philo, char *message, int ret)
 	printf("%llu Philo %d %s \n", t, philo->id, message);
 	if (ret != 1)
 		pthread_mutex_unlock(&philo->scenario->m_philo_print);
+}
+
+void	print_simple_message(t_scenario *scenario, char *message)
+{
+	pthread_mutex_lock(&scenario->m_philo_print);
+	printf("%s\n", message);
+	pthread_mutex_unlock(&scenario->m_philo_print);
 }

@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:13:00 by jballest          #+#    #+#             */
-/*   Updated: 2021/04/29 00:33:06 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/01 01:55:41 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int				ft_atoi(char *str);
 int				ft_strlen(char *str);
 unsigned long	ft_get_time(void);
 void			print_philo_message(t_philo *philo, char *message, int ret);
-
+void			print_simple_message(t_scenario *scenario, char *message);
 
 //	Errors
 

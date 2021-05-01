@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 17:26:04 by jballest          #+#    #+#             */
-/*   Updated: 2021/04/29 01:45:36 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/01 02:15:39 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*meal_count(t_scenario *scenario)
 	{
 		if (finish_philo_meals(scenario->philo_maxeat, &scenario->philos))
 		{
-			printf("\e[1;32m ALL PHILOSOPHERS HAVE SURVIVED! \e[0m");
+			print_simple_message(scenario, "ALL PHILOSOPHERS HAVE SURVIVED");
 			pthread_mutex_unlock(&scenario->m_philo_dead);
 		}
 		usleep(1000);
@@ -34,7 +34,7 @@ void	*check_death(t_philo *philo)
 			print_philo_message(philo, " has died... :(", 1);
 			pthread_mutex_unlock(&philo->scenario->m_philo_dead);
 		}
-		usleep(1000);
+		usleep(10);
 	}
 	(void) philo;
 }
