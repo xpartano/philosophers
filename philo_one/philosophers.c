@@ -6,21 +6,23 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 17:39:04 by jballest          #+#    #+#             */
-/*   Updated: 2021/04/30 03:16:49 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/02 01:48:34 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	finish_philo_meals(int max, t_philo **philos)
+int	finish_philo_meals(int max, t_scenario *scen)
 {
 	int	i;
 
 	i = 0;
-	while (philos[i])
+	while (i < scen->philon)
 	{
-		if (philos[i]->eat_times < max)
+		if (scen->philos[i].eat_times < max)
+		{
 			return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -67,12 +69,12 @@ void	lifecycle(t_philo *philo)
 	philo_take_forks(philo);
 	pthread_mutex_lock(&philo->m_eating);
 	print_philo_message(philo, " is eating... Yummy, yummy!", 0);
-	philo->eat_times++;
 	philo->is_eating = 1;
 	usleep(philo->scenario->tteat * 1000);
 	philo->last_eat = ft_get_time();
 	philo->death_line = philo->last_eat + philo->scenario->ttdie;
 	philo->is_eating = 0;
+	philo->eat_times++;
 	pthread_mutex_unlock(&philo->m_eating);
 	philo_drop_forks(philo);
 	print_philo_message(philo, " is sleeping... Shhh...", 0);

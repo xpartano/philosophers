@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 17:26:04 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/01 02:15:39 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/02 01:43:02 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ void	*meal_count(t_scenario *scenario)
 {
 	while (1)
 	{
-		if (finish_philo_meals(scenario->philo_maxeat, &scenario->philos))
+		if (finish_philo_meals(scenario->philo_maxeat, scenario))
 		{
-			print_simple_message(scenario, "ALL PHILOSOPHERS HAVE SURVIVED");
+			error_return("SURVIVED", 1);
+			//print_simple_message(scenario, "ALL PHILOSOPHERS HAVE SURVIVED");
 			pthread_mutex_unlock(&scenario->m_philo_dead);
+			return (NULL);
 		}
 		usleep(1000);
 	}
+
 }
 
 void	*check_death(t_philo *philo)
@@ -56,12 +59,10 @@ int	philo_threads(t_scenario *scen)
 	int			i;
 	pthread_t	philo_thread;
 
-	pthread_mutex_lock(&scen->m_philo_print);
-	pthread_mutex_unlock(&scen->m_philo_print);
 	scen->init_time = ft_get_time();
 	if (scen->philo_maxeat > 0)
 	{
-		pthread_create(&philo_thread, NULL, (void *)&meal_count, (void *)&scen);
+		pthread_create(&philo_thread, NULL, (void *)&meal_count, scen);
 		pthread_detach(philo_thread);
 	}
 	i = -1;
@@ -72,7 +73,5 @@ int	philo_threads(t_scenario *scen)
 		pthread_detach(philo_thread);
 		usleep(1000);
 	}
-	pthread_mutex_lock(&scen->m_philo_print);
-	pthread_mutex_unlock(&scen->m_philo_print);
 	return (1);
 }

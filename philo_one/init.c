@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 04:55:31 by jballest          #+#    #+#             */
-/*   Updated: 2021/04/29 01:40:31 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/01 02:33:34 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	init_philosophers(t_scenario *scen)
 		scen->philos[i].death_line = 0;
 		if (pthread_mutex_init(&scen->philos[i].m_eating, NULL))
 			return (-11);
+		if (pthread_mutex_init(&scen->philos[i].m_finished, NULL))
+			return (-12);
 		//pthread_mutex_lock(&scen->philos[i].m_eating);
 	}
 	return (0);

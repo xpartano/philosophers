@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:13:00 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/01 01:55:41 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/02 01:41:37 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_philo
 
 	pthread_mutex_t		m_eating;
 	pthread_mutex_t		m_alive;
+	pthread_mutex_t		m_finished;
 }t_philo;
 
 typedef struct s_scenario
@@ -83,7 +84,7 @@ int				philo_threads(t_scenario *scen);
 
 //	Philosophers
 
-int				finish_philo_meals(int max, t_philo **philos);
+int				finish_philo_meals(int max, t_scenario *scen);
 void			lifecycle(t_philo *philo);
 
 #endif
