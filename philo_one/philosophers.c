@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 17:39:04 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/02 02:05:33 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/02 02:29:58 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,5 @@ void	lifecycle(t_philo *philo)
 	philo_drop_forks(philo);
 	print_philo_message(philo, " is sleeping... Shhh...", 0, WHITE);
 	usleep(philo->scenario->ttsleep * 1000);
-	print_philo_message(philo, " is thiniking...", 0, WHITE);
+	print_philo_message(philo, " is thinking...", 0, WHITE);
 }
