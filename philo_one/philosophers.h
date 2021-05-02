@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:13:00 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/02 01:41:37 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/02 02:05:07 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@
 # define MIN_TTEAT 60
 # define MIN_TTSLEEP 60
 # define MIN_EATCOUNT 1
+# define BLACK "\e[1;30m"
+# define RED "\e[1;31m"
+# define GREEN "\e[1;32m"
+# define YELLOW "\e[1;33m"
+# define BLUE "\e[1;34m"
+# define MAGENTA "\e[1;35m"
+# define CYAN "\e[1;36m"
+# define WHITE "\e[0;37m"
 
 typedef struct s_philo
 {
@@ -70,8 +78,10 @@ int				init_pm(t_scenario *scen, int argc, char **argv);
 int				ft_atoi(char *str);
 int				ft_strlen(char *str);
 unsigned long	ft_get_time(void);
-void			print_philo_message(t_philo *philo, char *message, int ret);
-void			print_simple_message(t_scenario *scenario, char *message);
+void			print_philo_message(t_philo *philo, char *message,
+					int ret, char *col);
+void			print_simple_message(t_scenario *scenario,
+					char *message, char *col);
 
 //	Errors
 
