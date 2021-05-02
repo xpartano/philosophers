@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 17:26:04 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/02 13:54:53 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/02 14:07:50 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	*meal_count(t_scenario *scenario)
 		}
 		usleep(100);
 	}
-
 }
 
 void	*check_death(t_philo *philo)
