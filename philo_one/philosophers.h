@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:13:00 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/02 02:05:07 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/02 13:53:06 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ int				init_pm(t_scenario *scen, int argc, char **argv);
 int				ft_atoi(char *str);
 int				ft_strlen(char *str);
 unsigned long	ft_get_time(void);
-void			print_philo_message(t_philo *philo, char *message,
-					int ret, char *col);
-void			print_simple_message(t_scenario *scenario,
-					char *message, char *col);
+void			print_philo_message(char *col, t_philo *philo,
+					char *message, int ret);
+void			print_simple_message(char *col, t_scenario *scenario,
+					char *message);
 
 //	Errors
 
