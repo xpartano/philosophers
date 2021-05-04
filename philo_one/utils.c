@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 05:16:57 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/02 13:53:18 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/04 14:40:10 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,21 @@ int	ft_strlen(char *str)
 	i = 0;
 	while (str[i] != '\0')
 		 i++;
+	return (i);
+}
+
+int	ft_ndigits(int n)
+{
+	int	i;
+
+	i = 0;
+	if (n == 0)
+		return (1);
+	while (n != 0)
+	{
+		n /= 10;
+		i++;
+	}
 	return (i);
 }
 
@@ -49,35 +64,29 @@ int	ft_atoi(char *str)
 	return (nb);
 }
 
-unsigned long	ft_get_time(void)
+char	*ft_itoa(int n)
 {
-	unsigned long			res;
-	static struct timeval	time;
+	char			*num;
+	unsigned int	onum;
+	int				is_negative;
+	int				nsize;
 
-	gettimeofday(&time, NULL);
-	res = time.tv_sec * 1000;
-	res += time.tv_usec / 1000;
-	return (res);
-}
-
-void	print_philo_message(char *col, t_philo *philo, char *message, int ret)
-{
-	long long	t;
-
-	t = ft_get_time() - philo->scenario->init_time;
-	pthread_mutex_lock(&philo->scenario->m_philo_print);
-	printf("%s", col);
-	printf("%llu Philo %d %s \n", t, philo->id, message);
-	printf("%s", WHITE);
-	if (ret != 1)
-		pthread_mutex_unlock(&philo->scenario->m_philo_print);
-}
-
-void	print_simple_message(char *col, t_scenario *scenario, char *message)
-{
-	pthread_mutex_lock(&scenario->m_philo_print);
-	printf("%s", col);
-	printf("%s\n", message);
-	printf("%s", WHITE);
-	pthread_mutex_unlock(&scenario->m_philo_print);
+	is_negative = n < 0;
+	nsize = ft_ndigits(n) + is_negative;
+	num = (char *)malloc((nsize + 1) * sizeof(char));
+	if (!num)
+		return (0);
+	if (is_negative)
+		onum = -n;
+	else
+		onum = n;
+	num[nsize] = 0;
+	if (is_negative)
+		num[0] = '-';
+	while (--nsize >= is_negative)
+	{
+		num[nsize] = onum % 10 + 48;
+		onum /= 10;
+	}
+	return (num);
 }

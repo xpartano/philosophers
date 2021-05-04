@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:13:48 by jballest          #+#    #+#             */
-/*   Updated: 2021/04/23 15:12:19 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/04 12:31:46 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	error_return(char *txt, int ret)
 {
-	printf("\033[1;31m");
-	printf("%s\n", txt);
-	printf("\033[0m");
+	write(1, RED, ft_strlen(RED));
+	write(1, txt, ft_strlen(txt));
+	write(1, WHITE, ft_strlen(WHITE));
 	return (ret);
 }
 

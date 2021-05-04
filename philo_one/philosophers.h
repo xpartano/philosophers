@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:13:00 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/02 13:53:06 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/04 13:42:15 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 
 typedef struct s_philo
 {
+	pthread_t			philo_thread;
+	pthread_t			dead_thread;
+
 	int					id;
 	int					is_eating;
 	int					eat_times;
@@ -48,12 +51,12 @@ typedef struct s_philo
 	struct s_scenario	*scenario;
 
 	pthread_mutex_t		m_eating;
-	pthread_mutex_t		m_alive;
-	pthread_mutex_t		m_finished;
 }t_philo;
 
 typedef struct s_scenario
 {
+	pthread_t		meals_thread;
+
 	int				philon;
 	unsigned long	ttdie;
 	unsigned long	tteat;
@@ -69,19 +72,11 @@ typedef struct s_scenario
 	pthread_mutex_t	m_philo_dead;
 }t_scenario;
 
-//	Initializers
-
-int				init_pm(t_scenario *scen, int argc, char **argv);
-
 //	Utils
 
 int				ft_atoi(char *str);
 int				ft_strlen(char *str);
-unsigned long	ft_get_time(void);
-void			print_philo_message(char *col, t_philo *philo,
-					char *message, int ret);
-void			print_simple_message(char *col, t_scenario *scenario,
-					char *message);
+char			*ft_itoa(int n);
 
 //	Errors
 
@@ -92,9 +87,18 @@ int				error_return(char *txt, int ret);
 
 int				philo_threads(t_scenario *scen);
 
+//	Philosophers utils
+
+unsigned long	ft_get_time(void);
+void			print_philo_message(char *col, t_philo *philo,
+					char *message, int ret);
+void			print_simple_message(char *col, t_scenario *scenario,
+					char *message);
+
 //	Philosophers
 
 int				finish_philo_meals(int max, t_scenario *scen);
 void			lifecycle(t_philo *philo);
+void			free_everything(t_scenario *scen);
 
 #endif

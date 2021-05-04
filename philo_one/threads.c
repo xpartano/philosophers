@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 17:26:04 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/02 14:07:50 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/04 14:47:19 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ void	*meal_count(t_scenario *scenario)
 	{
 		if (finish_philo_meals(scenario->philo_maxeat, scenario))
 		{
-			print_simple_message(GREEN, scenario, "ALL PHILOSOPHERS SURVIVED!");
+			pthread_mutex_lock(&scenario->m_philo_print);
+			write(1, GREEN, ft_strlen(GREEN));
+			write(1, "ALL PHILOSOPHERS SURVIVED!\n",
+				ft_strlen("ALL PHILOSOPHERS SURVIVED!\n"));
+			write(1, WHITE, ft_strlen(WHITE));
 			pthread_mutex_unlock(&scenario->m_philo_dead);
 			return (NULL);
 		}
@@ -42,12 +46,11 @@ void	*check_death(t_philo *philo)
 
 void	*start_philo_thread(t_philo *philo)
 {
-	pthread_t	dead_thread;
-
 	philo->last_eat = ft_get_time();
 	philo->death_line = philo->last_eat + philo->scenario->ttdie;
-	pthread_create(&dead_thread, NULL, (void *)&check_death, philo);
-	pthread_detach(dead_thread);
+	pthread_create(&philo->dead_thread, NULL,
+		(void *)&check_death, philo);
+	pthread_detach(philo->dead_thread);
 	while (1)
 		lifecycle(philo);
 }
@@ -55,20 +58,20 @@ void	*start_philo_thread(t_philo *philo)
 int	philo_threads(t_scenario *scen)
 {
 	int			i;
-	pthread_t	philo_thread;
 
 	scen->init_time = ft_get_time();
 	if (scen->philo_maxeat > 0)
 	{
-		pthread_create(&philo_thread, NULL, (void *)&meal_count, scen);
-		pthread_detach(philo_thread);
+		pthread_create(&scen->meals_thread, NULL,
+			(void *)&meal_count, scen);
+		pthread_detach(scen->meals_thread);
 	}
 	i = -1;
 	while (++i < scen->philon)
 	{
-		pthread_create(&philo_thread, NULL,
+		pthread_create(&scen->philos[i].philo_thread, NULL,
 			(void *)&start_philo_thread, (void *)&scen->philos[i]);
-		pthread_detach(philo_thread);
+		pthread_detach(scen->philos[i].philo_thread);
 		usleep(1000);
 	}
 	return (1);

@@ -6,7 +6,7 @@
 #    By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/23 04:56:30 by jballest          #+#    #+#              #
-#    Updated: 2021/04/28 15:10:05 by jballest         ###   ########.fr        #
+#    Updated: 2021/05/04 12:19:35 by jballest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INCLUDES = -I .
 LIBS = -lpthread
 
 SRCS =	main.c						\
-		init.c						\
+		philo_utils.c				\
 		utils.c						\
 		errors.c					\
 		threads.c					\
