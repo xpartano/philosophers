@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:12:02 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/08 03:39:08 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/08 03:51:20 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	init_philosophers(t_scenario *scen)
 	{
 		scen->philos[i].scenario = scen;
 		scen->philos[i].id = i;
-		scen->philos[i].lfork = i;
-		scen->philos[i].rfork = (i + 1) % scen->philon;
 		scen->philos[i].is_eating = 0;
 		scen->philos[i].eat_times = 0;
 		scen->philos[i].death_line = 0;
@@ -46,6 +44,8 @@ int	init_pm(t_scenario *scen, int argc, char **argv)
 	scen->ttsleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		scen->philo_maxeat = ft_atoi(argv[5]);
+	else
+		scen->philo_maxeat = 0;
 	scen->philos = (t_philo *)malloc(sizeof(t_philo) * scen->philon);
 	if (!scen->philos)
 		return (-10);
