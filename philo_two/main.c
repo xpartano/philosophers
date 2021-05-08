@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:12:02 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/05 23:07:17 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/08 03:39:08 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,12 @@ int	init_pm(t_scenario *scen, int argc, char **argv)
 	scen->sem_print = "sem_print";
 	sem_unlink(scen->sem_print);
 	scen->m_philo_print = sem_open(scen->sem_print, O_CREAT, 0644, 1);
+	scen->sem_waiter = "sem_waiter";
+	sem_unlink(scen->sem_waiter);
+	scen->m_waiter = sem_open(scen->sem_waiter, O_CREAT, 0644, 1);
 	scen->sem_forks = "sem_forks";
 	sem_unlink(scen->sem_forks);
-	scen->m_forks = sem_open(scen->sem_forks, O_CREAT, 0644, 4);
+	scen->m_forks = sem_open(scen->sem_forks, O_CREAT, 0644, scen->philon);
 	return (init_philosophers(scen));
 }
 

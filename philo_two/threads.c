@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 17:26:04 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/05 21:39:33 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/07 01:24:31 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*meal_count(t_scenario *scenario)
 			sem_post(scenario->m_philo_dead);
 			return (NULL);
 		}
-		usleep(100);
+		usleep(10);
 	}
 }
 
@@ -38,10 +38,11 @@ void	*check_death(t_philo *philo)
 		{
 			print_philo_message(RED, philo, " has died... :(", 1);
 			sem_post(philo->scenario->m_philo_dead);
+			break ;
 		}
 		usleep(10);
 	}
-	(void) philo;
+	return (NULL);
 }
 
 void	*start_philo_thread(t_philo *philo)
@@ -72,7 +73,7 @@ int	philo_threads(t_scenario *scen)
 		pthread_create(&scen->philos[i].philo_thread, NULL,
 			(void *)&start_philo_thread, (void *)&scen->philos[i]);
 		pthread_detach(scen->philos[i].philo_thread);
-		usleep(1000);
+		usleep(10);
 	}
 	return (1);
 }
