@@ -85,7 +85,6 @@ typedef struct s_scenario
 int				ft_atoi(char *str);
 int				ft_strlen(char *str);
 char			*ft_itoa(int n);
-char			*ft_strjoin(char *s1, char *s2);
 
 //	Errors
 
