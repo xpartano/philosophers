@@ -33,16 +33,14 @@ void	philo_take_forks(t_philo *philo)
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(&philo->scenario->m_forks[philo->lfork]);
-		print_philo_message(WHITE, philo, " has taken left fork...", 0);
 		pthread_mutex_lock(&philo->scenario->m_forks[philo->rfork]);
-		print_philo_message(WHITE, philo, " has taken right fork...", 0);
+		print_philo_message(WHITE, philo, " has taken forks...", 0);
 	}
 	else
 	{
 		pthread_mutex_lock(&philo->scenario->m_forks[philo->rfork]);
-		print_philo_message(WHITE, philo, " has taken right fork...", 0);
 		pthread_mutex_lock(&philo->scenario->m_forks[philo->lfork]);
-		print_philo_message(WHITE, philo, " has taken left fork...", 0);
+		print_philo_message(WHITE, philo, " has taken forks...", 0);
 	}
 }
 
