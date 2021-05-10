@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philo_two
+NAME = philo_three
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -g
