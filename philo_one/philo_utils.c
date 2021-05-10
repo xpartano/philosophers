@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 17:17:33 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/04 14:47:14 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/10 16:15:52 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	free_everything(t_scenario *scen)
 	i = 0;
 	if (scen->philos)
 		free(scen->philos);
-	pthread_join(scen->meals_thread, NULL);
 	pthread_mutex_destroy(&scen->m_philo_print);
 	pthread_mutex_destroy(&scen->m_philo_dead);
 }
