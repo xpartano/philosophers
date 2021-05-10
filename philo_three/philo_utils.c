@@ -66,7 +66,6 @@ void	free_everything(t_scenario *scen)
 		{
 			kill(scen->philos[i].pid, SIGKILL);
 			free(scen->philos[i].sem_philo_name);
-			pthread_join(scen->philos[i].dead_thread, NULL);
 			usleep (10);
 		}
 	}
