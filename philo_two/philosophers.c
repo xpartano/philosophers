@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 17:39:04 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/08 03:40:24 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/10 14:37:20 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	lifecycle(t_philo *philo)
 	sem_wait(philo->m_eating);
 	print_philo_message(GREEN, philo, " is eating... Yummy, yummy!", 0);
 	philo->is_eating = 1;
-	usleep(philo->scenario->tteat * 1000);
 	philo->last_eat = ft_get_time();
+	usleep(philo->scenario->tteat * 1000);
 	philo->death_line = philo->last_eat + philo->scenario->ttdie;
 	philo->is_eating = 0;
 	philo->eat_times++;
