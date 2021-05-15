@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jballest <jballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:13:00 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/08 03:43:18 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/15 13:39:20 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,13 @@ typedef struct s_scenario
 	char			*sem_waiter;
 	char			*sem_forks;
 	char			*sem_print;
+	char			*sem_count;
 	char			*sem_dead;
 
 	sem_t			*m_waiter;
 	sem_t			*m_forks;
 	sem_t			*m_philo_print;
+	sem_t			*m_meal_count;
 	sem_t			*m_philo_dead;
 }t_scenario;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jballest <jballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 17:26:04 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/10 16:24:29 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/15 13:46:28 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 
 void	*meal_count(t_scenario *scenario)
 {
-	while (1)
+	int i;
+
+	i = 0;
+	while (i < scenario->philon)
 	{
-		if (finish_philo_meals(scenario->philo_maxeat, scenario))
-		{
-			sem_wait(scenario->m_philo_print);
-			write(1, GREEN, ft_strlen(GREEN));
-			write(1, "ALL PHILOSOPHERS SURVIVED!\n",
-				ft_strlen("ALL PHILOSOPHERS SURVIVED!\n"));
-			write(1, WHITE, ft_strlen(WHITE));
-			sem_post(scenario->m_philo_dead);
-			return (NULL);
-		}
-		usleep(1000);
+		sem_wait(scenario->m_meal_count);
+		i++;
 	}
+	sem_wait(scenario->m_philo_print);
+	write(1, GREEN, ft_strlen(GREEN));
+	write(1, "ALL PHILOSOPHERS SURVIVED!\n",
+		ft_strlen("ALL PHILOSOPHERS SURVIVED!\n"));
+	write(1, WHITE, ft_strlen(WHITE));
+	sem_post(scenario->m_philo_dead);
+	return (NULL);
 }
 
 void	*check_death(t_philo *philo)
@@ -72,7 +73,10 @@ int	philo_threads(t_scenario *scen)
 	{
 		scen->philos[i].pid = fork();
 		if (scen->philos[i].pid == 0)
+		{
 			start_philo_thread(&scen->philos[i]);
+			exit (0);
+		}
 		usleep(1000);
 	}
 	return (1);

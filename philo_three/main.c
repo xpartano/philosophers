@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jballest <jballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:12:02 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/08 03:51:20 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/15 13:40:45 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ int	init_pm(t_scenario *scen, int argc, char **argv)
 	scen->sem_print = "sem_print";
 	sem_unlink(scen->sem_print);
 	scen->m_philo_print = sem_open(scen->sem_print, O_CREAT, 0644, 1);
+	scen->sem_count = "sem_count";
+	sem_unlink(scen->sem_count);
+	scen->m_meal_count = sem_open(scen->sem_count, O_CREAT, 0644, 0);
 	scen->sem_waiter = "sem_waiter";
 	sem_unlink(scen->sem_waiter);
 	scen->m_waiter = sem_open(scen->sem_waiter, O_CREAT, 0644, 1);
