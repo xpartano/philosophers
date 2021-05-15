@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jballest <jballest@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jballest <jballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 17:39:04 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/10 14:39:23 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/15 14:32:18 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,9 @@ void	philo_take_forks(t_philo *philo)
 
 void	philo_drop_forks(t_philo *philo)
 {
-	if (philo->id % 2 == 0)
-	{
-		pthread_mutex_unlock(&philo->scenario->m_forks[philo->lfork]);
-		print_philo_message(WHITE, philo, " dropped left fork...", 0);
-		pthread_mutex_unlock(&philo->scenario->m_forks[philo->rfork]);
-		print_philo_message(WHITE, philo, " dropped right fork...", 0);
-	}
-	else
-	{
-		pthread_mutex_unlock(&philo->scenario->m_forks[philo->rfork]);
-		print_philo_message(WHITE, philo, " dropped right fork...", 0);
-		pthread_mutex_unlock(&philo->scenario->m_forks[philo->lfork]);
-		print_philo_message(WHITE, philo, " dropped left fork...", 0);
-	}
+	pthread_mutex_unlock(&philo->scenario->m_forks[philo->rfork]);
+	pthread_mutex_unlock(&philo->scenario->m_forks[philo->lfork]);
+	print_philo_message(WHITE, philo, " dropped forks...", 0);
 }
 
 void	lifecycle(t_philo *philo)
