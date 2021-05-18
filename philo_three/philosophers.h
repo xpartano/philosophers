@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:13:00 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/15 13:39:20 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/17 18:18:50 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_philo
 	pthread_t			philo_thread;
 	pthread_t			dead_thread;
 
-	pid_t			pid;
+	pid_t				pid;
 	int					id;
 	int					is_eating;
 	int					eat_times;

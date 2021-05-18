@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 17:26:04 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/15 13:46:28 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/17 18:19:06 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*meal_count(t_scenario *scenario)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < scenario->philon)

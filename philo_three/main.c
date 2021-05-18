@@ -6,7 +6,7 @@
 /*   By: jballest <jballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 14:12:02 by jballest          #+#    #+#             */
-/*   Updated: 2021/05/15 13:40:45 by jballest         ###   ########.fr       */
+/*   Updated: 2021/05/17 18:22:04 by jballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,8 @@ int	init_philosophers(t_scenario *scen)
 	return (0);
 }
 
-int	init_pm(t_scenario *scen, int argc, char **argv)
+void	init_semaphores(t_scenario *scen)
 {
-	scen->philon = ft_atoi(argv[1]);
-	scen->ttdie = ft_atoi(argv[2]);
-	scen->tteat = ft_atoi(argv[3]);
-	scen->ttsleep = ft_atoi(argv[4]);
-	if (argc == 6)
-		scen->philo_maxeat = ft_atoi(argv[5]);
-	else
-		scen->philo_maxeat = 0;
-	scen->philos = (t_philo *)malloc(sizeof(t_philo) * scen->philon);
-	if (!scen->philos)
-		return (-10);
 	scen->sem_dead = "sem_dead";
 	sem_unlink(scen->sem_dead);
 	scen->m_philo_dead = sem_open(scen->sem_dead, O_CREAT, 0644, 0);
@@ -64,6 +53,22 @@ int	init_pm(t_scenario *scen, int argc, char **argv)
 	scen->sem_forks = "sem_forks";
 	sem_unlink(scen->sem_forks);
 	scen->m_forks = sem_open(scen->sem_forks, O_CREAT, 0644, scen->philon);
+}
+
+int	init_pm(t_scenario *scen, int argc, char **argv)
+{
+	scen->philon = ft_atoi(argv[1]);
+	scen->ttdie = ft_atoi(argv[2]);
+	scen->tteat = ft_atoi(argv[3]);
+	scen->ttsleep = ft_atoi(argv[4]);
+	if (argc == 6)
+		scen->philo_maxeat = ft_atoi(argv[5]);
+	else
+		scen->philo_maxeat = 0;
+	scen->philos = (t_philo *)malloc(sizeof(t_philo) * scen->philon);
+	if (!scen->philos)
+		return (-10);
+	init_semaphores(scen);
 	return (init_philosophers(scen));
 }
 
